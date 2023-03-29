@@ -51,5 +51,25 @@ namespace StateCensusTest
                 throw;
             }
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void LoadDataFromCSV_ShouldThrowException_WhenHeaderIsIncorrect()
+        {
+            // Arrange
+            string filePath = "C:\\Users\\princ\\OneDrive\\Desktop\\dotnet\\Day29StateCensus\\Day29StateCensus\\Book3.csv";
+            StateCensusAnalyzer analyser = new StateCensusAnalyzer(filePath);
+
+            // Act and Assert
+            try
+            {
+                analyser.LoadDataFromCSV();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Caught exception: " + ex.Message);
+                throw;
+            }
+        }
     }
 }
