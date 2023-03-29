@@ -31,5 +31,25 @@ namespace StateCensusTest
             // Act and Assert
             analyser.LoadDataFromCSV();
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void LoadDataFromCSV_ShouldThrowException_WhenDelimiterIsIncorrect()
+        {
+            // Arrange
+            string filePath = "C:\\Users\\kundan\\Desktop\\Bridgelab\\rfp257\\StateCensus\\StateCensus\\Data2.csv";
+            StateCensusAnalyzer analyser = new StateCensusAnalyzer(filePath);
+
+            // Act and Assert
+            try
+            {
+                analyser.LoadDataFromCSV(';'); // Use semicolon as delimiter instead of comma
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Caught exception: " + ex.Message);
+                throw;
+            }
+        }
     }
 }
